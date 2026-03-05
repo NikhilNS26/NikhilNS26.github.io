@@ -164,7 +164,15 @@ export const projects = [
   },
 ] as const;
 
-export const testimonials = [
+export type Certificate = {
+  id: number;
+  title: string;
+  img: string;
+  iconLists?: string[];
+  link: string;
+};
+
+export const testimonials: Certificate[] = [
   {
     id: 1,
     title: "Digital Twins",
@@ -176,7 +184,14 @@ export const testimonials = [
     id: 2,
     title: "Knowledge optioneering for manufacturing processs",
     img: "/c2.png",
-    iconLists: ["/icons/pymoo.jpg", "/icons/python.png", "/icons/neo4j.png", "/icons/langchain.png", "/icons/pytorch.png", "/icons/gradio.png"],
+    iconLists: [
+      "/icons/pymoo.jpg",
+      "/icons/python.png",
+      "/icons/neo4j.png",
+      "/icons/langchain.png",
+      "/icons/pytorch.png",
+      "/icons/gradio.png",
+    ],
     link: "https://drive.google.com/file/d/1QvhQ32yh0QcP0jYCBIFPrhJUH3ZdBKec/view?usp=sharing",
   },
   {
@@ -186,16 +201,21 @@ export const testimonials = [
     iconLists: [""],
     link: "https://drive.google.com/file/d/114T1gwHdihIOZ05LygNXdkI0tk4pFicK/view?usp=sharing",
   },
-
   {
     id: 4,
     title: "IBM Data Science Professional Certificate",
     img: "/c4.png",
-    iconLists: ["/icons/python.png", "/icons/pandas.png", "/icons/numpy.png", "/icons/seaborn.png", "/icons/sklearn.png", "/icons/mysql.png", "/icons/pytorch.png" ],
+    iconLists: [
+      "/icons/python.png",
+      "/icons/pandas.png",
+      "/icons/numpy.png",
+      "/icons/seaborn.png",
+      "/icons/sklearn.png",
+      "/icons/mysql.png",
+      "/icons/pytorch.png",
+    ],
     link: "https://www.coursera.org/account/accomplishments/specialization/certificate/ZIGYPY21IAQ3",
   },
-
-
 ] as const;
 
 export const workExperience = [
