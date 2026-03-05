@@ -21,17 +21,19 @@ export const Footer = () => {
 
       <div className="flex flex-col items-center">
         <h1 className="heading lg:max-w-[45vw]">
-          Ready to take <span className="text-purple">your</span> digital
-          presence to the next level?
+          Interested in <span className="text-purple">data-driven</span> and
+          intelligent manufacturing solutions?
         </h1>
 
+
         <p className="my-5 text-center text-white-200 md:mt-10">
-          Reach out to me today and let&apos;s discuss how I can help your
-          achieve your goals.
+          Reach out to me and let’s discuss how data, AI, and intelligent systems
+          can solve real-world manufacturing challenges.
         </p>
 
+
         <Link
-          href={`mailto:${links.ownerEmail}`}
+          href={`mailto:nikhilns@iisc.ac.in`}
           target="_blank"
           rel="noreferrer noopener"
           className="md:mt-10"
@@ -49,17 +51,13 @@ export const Footer = () => {
         <p className="text-sm font-light md:text-base md:font-normal">
           Copyright &copy; {new Date().getFullYear()}{" "}
           <Link
-            href="https://sanidhy.me"
+            href="mailto:nikhilns@iisc.ac.in"
             target="_blank"
             rel="noreferrer noopener"
             className="text-purple"
           >
-            Sanidhya
-          </Link>{" "}
-          |{" "}
-          <Link href={links.sourceCode} className="underline">
-            Source Code
-          </Link>
+            Nikhil N S
+          </Link>{" | "}All rights reserved.
         </p>
 
         <div className="flex items-center gap-6 md:gap-3">

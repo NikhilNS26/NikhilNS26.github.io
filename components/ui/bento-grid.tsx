@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 import dynamic from "next/dynamic";
+import { IoDownloadOutline } from "react-icons/io5";
 
 import { links } from "@/config";
 import { techStack } from "@/data";
@@ -11,13 +12,87 @@ import { cn } from "@/lib/utils";
 
 import { BackgroundGradientAnimation } from "./background-gradient-animation";
 import { MagicButton } from "./magic-button";
-
 import { GridGlobe } from "../grid-globe";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+
+
+const techSkills = [
+  { name: "Python", icon: "/icons/python.png" },
+  { name: "C", icon: "/icons/c.png" },
+  { name: "NumPy", icon: "/icons/numpy.png" },
+  { name: "Pandas", icon: "/icons/pandas.png" },
+  { name: "Seaborn", icon: "/icons/seaborn.png" },
+  { name: "PyTorch", icon: "/icons/pytorch.png" },
+  { name: "TensorFlow", icon: "/icons/tensorflow.png" },
+  { name: "Scikit-learn", icon: "/icons/sklearn.png" },
+  { name: "MySQL", icon: "/icons/mysql.png" },
+  { name: "Neo4j", icon: "/icons/neo4j.png" },
+  { name: "Edge Impulse", icon: "/icons/edgeimpulse.png" },
+  { name: "LangChain", icon: "/icons/langchain.png" },
+  { name: "Pymoo", icon: "/icons/pymoo.jpg" },
+  { name: "Gradio", icon: "/icons/gradio.png" },
+];
+
 
 const BentoGridLottie = dynamic(() => import("./bento-grid-lottie"), {
   ssr: false,
 });
 
+/* =======================
+   STATS DATA
+======================= */
+const stats = [
+  { label: "Projects Completed", value: 5 },
+  { label: "Research Papers & Blogs", value: 2 },
+  { label: "Technologies", value: 10 },
+  { label: "Years Experience", value: 0 },
+];
+
+/* =======================
+   ANIMATED COUNTER
+======================= */
+const AnimatedCounter = ({ value }: { value: number }) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(ref, { margin: "-80px" });
+
+  const motionValue = useMotionValue(0);
+  const rounded = useTransform(motionValue, (latest) =>
+    Math.round(latest)
+  );
+
+  useEffect(() => {
+    if (isInView) {
+      motionValue.set(0);
+      animate(motionValue, value, {
+        duration: 1.6,
+        ease: "easeOut",
+      });
+    }
+  }, [isInView, value, motionValue]);
+
+  return (
+    <div
+      ref={ref}
+      className="flex flex-col items-center whitespace-nowrap"
+    >
+      <div className="flex items-baseline gap-1 leading-none">
+        <motion.span className="text-3xl lg:text-4xl font-bold text-red-400" >
+          {rounded}
+        </motion.span>
+        <span className="text-red-400 text-xl font-semibold">+</span>
+      </div>
+
+      <span className="mt-1 text-xs lg:text-sm text-sky-400">
+        {/* label is rendered outside now */}
+      </span>
+    </div>
+  );
+}; // ✅ THIS WAS MISSING
+
+
+/* =======================
+   GRID WRAPPER
+======================= */
 export const BentoGrid = ({
   className,
   children,
@@ -37,6 +112,10 @@ export const BentoGrid = ({
   );
 };
 
+
+/* =======================
+   GRID ITEM
+======================= */
 export const BentoGridItem = ({
   id,
   className,
@@ -46,6 +125,11 @@ export const BentoGridItem = ({
   imgClassName,
   titleClassName,
   spareImg,
+  type,
+  profileImage,
+  aboutText,
+  roles,
+  workingAreas,
 }: {
   id?: number;
   className?: string;
@@ -55,9 +139,173 @@ export const BentoGridItem = ({
   imgClassName?: string;
   titleClassName?: string;
   spareImg?: string;
+  type?: string;
+  profileImage?: string;
+  aboutText?: string;
+  roles?: string[];
+  workingAreas?: string[];
+
 }) => {
   const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    setCopied(false); // prevent auto animation
+  }, []);
 
+  const handleResumeDownload = () => {
+    setCopied(false);
+
+    setTimeout(() => {
+      setCopied(true);
+    }, 50);
+
+    const link = document.createElement("a");
+    link.href = "/resume.pdf";
+    link.download = "Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+
+
+  /* =======================
+     ABOUT ME CARD (ID = 1)
+  ======================= */
+  if (type === "about-me") {
+    return (
+      <div
+        className={cn(
+          "relative flex flex-col overflow-hidden rounded-3xl border border-white/[0.1] shadow-input text-justify",
+          className
+        )}
+      >
+        {/* 🎥 Background Video */}
+        <video
+          className="absolute inset-0 h-full w-full object-cover opacity-25"
+          src="/about_vid.mp4"   // ⬅️ YOU CAN CHANGE THIS PATH
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+
+        {/* 🔤 CONTENT (unchanged) */}
+        <div className="relative z-10 p-6 lg:p-10">
+          <h3 className="mb-6 text-3xl font-bold text-sky-400">
+            About Me
+          </h3>
+
+          <div className="flex gap-6">
+            <img
+              src={profileImage}
+              alt="Profile"
+              className="h-48 w-48 rounded-xl object-cover border border-white/10"
+            />
+
+            <div>
+              <p className="text-white/90">{aboutText}</p>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {roles?.map((role) => (
+                  <span
+                    key={role}
+                    className="rounded-full bg-green-500/10 px-3 py-1 text-sm text-green-400 border border-green-500/30"
+                  >
+                    {role}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-2">
+            {workingAreas?.map((area) => (
+              <span
+                key={area}
+                className="rounded-full bg-rose-500/10 px-3 py-1 text-sm text-rose-400 border border-rose-500/30"
+              >
+                {area}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  /* =======================
+    TECH SKILLS GRID (ID = 5)
+  ======================= */
+  if (type === "tech-skills") {
+    return (
+      <div
+        className={cn(
+          "relative overflow-hidden rounded-3xl border border-white/[0.1]",
+          className
+        )}
+      >
+        {/* 🎥 Background Video */}
+        <video
+          className="absolute inset-0 h-full w-full object-cover opacity-30"
+          src="/tech_vid.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+
+        {/* 🔤 Content */}
+        <div className="relative z-10 h-full p-6 lg:p-10">
+
+          {/* Heading */}
+          <h3 className="mb-6 text-2xl font-bold text-sky-400">
+            Technical Skills
+          </h3>
+
+          {/* Skills Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {techSkills.map((skill) => (
+              <motion.div
+                key={skill.name}
+                initial={{ y: 0 }}
+                animate={{ y: [0, -6, 0] }}
+                transition={{
+                  duration: 4 + Math.random() * 2,
+                  repeat: Infinity,
+                  ease: "circInOut",
+                  delay: Math.random() * 1.5,
+                }}
+                className="
+                  flex items-center gap-3
+                  rounded-xl border border-white/10
+                  bg-white/5 px-4 py-2
+                  backdrop-blur-md
+                  shadow-sm
+                  transition hover:bg-white/10
+                "
+              >
+                <img
+                  src={skill.icon}
+                  alt={skill.name}
+                  className="h-6 w-6 object-contain"
+                />
+
+                <span className="text-sm text-white/90 whitespace-nowrap">
+                  {skill.name}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    );
+  }
+
+
+  /* =======================
+     DEFAULT GRID ITEM
+  ======================= */
   const handleCopy = () => {
     navigator.clipboard.writeText(links.ownerEmail);
     setCopied(true);
@@ -65,114 +313,228 @@ export const BentoGridItem = ({
 
   useEffect(() => {
     if (!copied) return;
-
-    const copyTimeout = setTimeout(() => {
-      setCopied(false);
-    }, 3500);
-
-    return () => clearTimeout(copyTimeout);
+    const t = setTimeout(() => setCopied(false), 3500);
+    return () => clearTimeout(t);
   }, [copied]);
 
   return (
     <div
       className={cn(
-        "group/bento relative row-span-1 flex flex-col justify-between space-y-4 overflow-hidden rounded-3xl border border-white/[0.1] shadow-input transition duration-200 hover:shadow-xl dark:shadow-none",
+        "relative flex flex-col overflow-hidden rounded-3xl border border-white/[0.1] shadow-input",
         className
       )}
       style={{
-        background: "rgb(4,7,29)",
-        backgroundColor:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+        background: "linear-gradient(90deg, rgba(4,7,29,1), rgba(12,14,35,1))",
       }}
     >
-      <div className={cn("h-full", id === 6 && "flex justify-center")}>
-        <div className="absolute h-full w-full">
-          {img && (
-            <Image
-              width={689}
-              height={541}
-              src={img}
-              alt={img}
-              className={cn("object-cover object-center", imgClassName)}
-            />
-          )}
-        </div>
+      <div className="relative h-full">
+        {img && (
+          <Image
+            width={689}
+            height={541}
+            src={img}
+            alt=""
+            className={cn("absolute h-full w-full object-cover", imgClassName)}
+          />
+        )}
 
-        <div
-          className={cn(
-            "absolute right-0 -mb-5",
-            id === 5 && "w-full opacity-80"
-          )}
-        >
-          {spareImg && (
-            <Image
-              width={208}
-              height={96}
-              src={spareImg}
-              alt={spareImg}
-              className="h-full w-full object-cover object-center"
-            />
-          )}
-        </div>
+        {spareImg && (
+          <Image
+            width={208}
+            height={96}
+            src={spareImg}
+            alt=""
+            className="absolute right-0 bottom-0 opacity-80"
+          />
+        )}
+        
+        {id === 4 && (
+          <div className="relative z-10 p-6 lg:p-10">
+            {/* Heading */}
+            <h3 className="mb-2 text-2xl font-bold text-sky-400">
+              Hobbies
+            </h3>
+
+            {/* Hobbies floating pills */}
+            <div className="flex flex-wrap gap-1">
+
+              {[
+                "Cycling",
+                "Listening to Music",
+                "Photography",
+                "Tech Exploring",
+                "Reading",
+              ].map((hobby) => (
+                <motion.span
+                  key={hobby}
+                  initial={{ y: 0 }}
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{
+                    duration: 4 + Math.random() * 2,
+                    repeat: Infinity,
+                    ease: "circInOut",
+                    delay: Math.random() * 1.5,
+                  }}
+                  className="
+                    rounded-full
+                    border border-pink-500/30
+                    bg-pink-500/10
+                    px-4 py-2
+                    text-sm
+                    text-pink-400
+                    backdrop-blur-md
+                    whitespace-nowrap
+                  "
+                >
+                  {hobby}
+                </motion.span>
+              ))}
+
+            </div>
+          </div>
+        )}
 
         {id === 6 && <BackgroundGradientAnimation />}
 
         <div
           className={cn(
-            "relative flex min-h-40 flex-col p-5 px-5 transition duration-200 group-hover/bento:translate-x-2 md:h-full lg:p-10",
+            "relative z-10 flex flex-col p-5 lg:p-0",
+            id === 4 ? "h-auto justify-start" : "h-full justify-center",
+            id === 6 ? "h-auto justify-start" : "h-full justify-center",
             titleClassName
           )}
         >
-          <div className="z-10 font-sans text-sm font-extralight text-[#c1c2d3] md:text-xs lg:text-base">
-            {description}
-          </div>
 
-          <div className="z-10 max-w-96 font-sans text-lg font-bold lg:text-3xl">
-            {title}
-          </div>
+          {/* DESCRIPTION */}
+          {description && (
+            <div className="text-sm text-white/60">{description}</div>
+          )}
 
-          {id === 2 && <GridGlobe />}
+          {/* TITLE */}
+          {title && (
+            <div className="mt-2 text-lg font-bold lg:text-3xl">{title}</div>
+          )}
 
-          {id === 3 && (
-            <div className="absolute -right-3 flex w-fit gap-1 lg:-right-2 lg:gap-5">
-              <div className="flex flex-col gap-3 lg:gap-8">
-                {techStack.stack1.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-lg bg-[#10132e] px-3 py-2 text-center text-xs opacity-50 lg:px-3 lg:py-4 lg:text-base lg:opacity-100"
-                  >
-                    {item}
-                  </span>
-                ))}
+          {/* ===== STATS GRID (ID = 2) ===== */}
+          { id === 2 && (
+            <div className="relative h-full w-full">
 
-                <span className="rounded-lg bg-[#10132e] px-3 py-4 text-center" />
+              {/* 🌍 Globe background (restored) */}
+              <div className="absolute inset-0 opacity-40">
+                <GridGlobe />
               </div>
 
-              <div className="flex flex-col gap-3 lg:gap-8">
-                <span className="rounded-lg bg-[#10132e] px-3 py-4 text-center" />
-                {techStack.stack2.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-lg bg-[#10132e] px-3 py-2 text-center text-xs opacity-50 lg:px-3 lg:py-4 lg:text-base lg:opacity-100"
-                  >
-                    {item}
-                  </span>
-                ))}
+              {/* 📊 Stats row */}
+              <div className="relative z-10 flex h-full items-center justify-center">
+                <div className="mx-auto flex w-fit justify-center gap-10">
+
+                  {stats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="flex min-w-[90px] flex-col items-center text-center"
+                    >
+                      {/* NUMBER */}
+                      <AnimatedCounter value={stat.value} />
+                      <span className="mt-1 text-xs text-sky-400 text-center leading-tight">
+                        {stat.label}
+                      </span>
+
+                    </div>
+                  ))}
+
+                </div>
               </div>
             </div>
           )}
 
-          {id === 6 && (
-            <div className="group relative mt-5">
-              <BentoGridLottie copied={copied} />
+          {/* CREATIVE COMPANION (ID = 3) */}
+          {id === 3 && (
+            <div className="absolute inset-0 p-1 lg:p-2">
+              {/* Heading */}
+              {/* shift the text bit from left to right beacuse the text we attachch with left border of the continer grid*/}
+              <h3 className="mb-5 text-xl font-bold text-sky-400 border-l-4 pl-3 ">
+                My Creative Companion
+              </h3>
 
-              <MagicButton
-                title={copied ? "Email copied!" : "Copy my email"}
-                icon={<IoCopyOutline />}
-                otherClasses="!bg-[#161a31]"
-                handleClick={handleCopy}
-                asChild
-              />
+              {/* CONTENT ROW */}
+              <div className="flex items-start gap-6">
+
+                {/* LEFT: PHOTO */}
+                <div className="flex-shrink-0">
+                  <img
+                    src="" // replace later
+                    alt="Creative Companion"
+                    className="
+                      h-28 w-28
+                      rounded-xl
+                      object-cover
+                      border border-white/10
+                    "
+                  />
+                </div>
+
+                {/* RIGHT: INFO */}
+                <div className="flex flex-col gap-1">
+
+                  {/* Name (WHITE, no gradient) */}
+                  <h4 className="text-lg font-semibold text-red-400">
+                    Surya Tomar
+                  </h4>
+
+                  {/* Role */}
+                  <span
+                    className="
+                      w-fit rounded-full px-3 py-1
+                      bg-green-500/10
+                      text-sm
+                      text-green-400
+                      border border-green-500/30
+                    "
+                  >
+                    AI | ML Researcher
+                  </span>
+
+                  {/* Description */}
+                  <p className="max-w-sm text-sm leading-relaxed text-white/70">
+                    Focused on resarch in Generative AI, Digital Twins, and Intelligent Systems for Smart Manufacturing applications.
+                  </p>
+
+                  {/* Connect */}
+                  <a
+                    href="mailto:suryatomar@iisc.ac.in" // change later
+                    className="
+                      inline-flex items-center gap-1
+                      text-sm font-medium text-sky-400
+                      transition-all duration-200
+                      hover:gap-2 hover:underline
+                    "
+                  >
+                    <span className="text-sm text-pink-400">
+                    Connect
+                    </span>
+                    <span className="text-pink-400">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+
+
+          {/* CONTACT (ID = 6) */}
+          {id === 6 && (
+            <div className="mt-0.5 flex flex-col items-center">
+              <BentoGridLottie copied={copied} />
+              <a
+                href="/resume.pdf"          // ⬅️ change path later
+                download
+                className="inline-block mt-0.5"
+              >
+                <MagicButton
+                  title="Click here"
+                  icon={<IoDownloadOutline className="h-20 w-20 text-white" />}
+                  handleClick={handleResumeDownload}
+                />
+              </a>
             </div>
           )}
         </div>

@@ -1,44 +1,76 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
 
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
-import { companies, testimonials } from "@/data";
+import { testimonials as certificates } from "@/data";
 
 export const Clients = () => {
   return (
-    <section id="testimonials" className="py-20">
+    <section id="certifications" className="py-20">
       <h1 className="heading">
-        Kind words from <span className="text-purple">satisfied clients</span>
+        <span className="text-purple">Certifications & Achievements</span>
       </h1>
 
-      <div className="flex flex-col items-center max-lg:mt-10">
-        <div className="relative flex h-[50vh] flex-col items-center justify-center  overflow-hidden rounded-md antialiased md:h-[30rem]">
+      <div className="mt-10 flex flex-col items-center">
+        <div className="relative h-[28rem] w-full overflow-hidden">
           <InfiniteMovingCards
-            items={testimonials}
+            items={certificates}
             direction="right"
-            speed="slow"
+            speed="fast"
+            renderItem={(item: { img: string; title: string; iconLists?: string[]; link: string }) => (
+              <div
+                className="
+                  min-w-[320px] md:min-w-[360px]
+                  rounded-2xl
+                  border border-white/10
+                  bg-white/5
+                  p-5
+                  backdrop-blur
+                "
+              >
+                {/* Certificate image */}
+                <div className="mb-4 h-[180px] w-full overflow-hidden rounded-xl bg-[#0f1225]">
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    width={400}
+                    height={250}
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+
+                {/* Title */}
+                <h3 className="line-clamp-2 text-sm font-semibold text-white">
+                  {item.title}
+                </h3>
+
+                {/* Tools */}
+                <div className="mt-3 flex items-center">
+                  {(item.iconLists ?? []).map((icon, i) => (
+                    <div
+                      key={i}
+                      className="mr-2 flex h-8 w-8 items-center justify-center
+                                 rounded-full border border-white/20 bg-black"
+                    >
+                      <Image src={icon} alt="" width={16} height={16} />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Link */}
+                <Link
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-purple hover:underline"
+                >
+                  View Certificate →
+                </Link>
+              </div>
+            )}
           />
-        </div>
-
-        <div className="flex flex-wrap items-center justify-center gap-4 max-lg:mt-10 md:gap-16">
-          {companies.map(({ id, img, name, nameImg }) => (
-            <div key={id} className="flex max-w-32 gap-2 md:max-w-60">
-              <Image
-                height={29}
-                width={43}
-                src={img}
-                alt={`${name}'s logo`}
-                className="w-5 md:w-10"
-              />
-
-              <Image
-                height={28}
-                width={131}
-                src={nameImg}
-                alt={name}
-                className="w-20 md:w-24"
-              />
-            </div>
-          ))}
         </div>
       </div>
     </section>

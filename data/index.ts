@@ -1,71 +1,105 @@
 import { links } from "@/config";
+import {
+  FaInstagram,} from "react-icons/fa";
 
 export const navItems = [
-  { name: "About", link: "#about" },
-  { name: "Projects", link: "#projects" },
-  { name: "Testimonials", link: "#testimonials" },
-  { name: "Contact", link: "#contact" },
-] as const;
+  {
+    name: "About",
+    link: "#about",
+  },
+  {
+    name: "Projects",
+    link: "#projects",
+  },
+  {
+    name: "Certifications",
+    link: "#certifications",
+  },
+
+  {
+    name: "Experience",
+    link: "#experience",
+  },
+  {
+    name: "Contact",
+    link: "#contact",
+  },
+];
 
 export const gridItems = [
   {
     id: 1,
-    title: "I prioritize client collaboration, fostering open communication ",
-    description: "",
+    type: "about-me", 
     className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
-    imgClassName: "w-full h-full",
-    titleClassName: "justify-end",
-    img: "/b1.svg",
-    spareImg: "",
+
+    profileImage: "/techy.png", // change path later
+
+    aboutText:
+    // 2 side alligment of paragraph 
+      "I enjoy making machines, data, and algorithms communicate with each other, often more effectively than humans do. My work sits at the intersection of Machine Learning, Generative AI, Digital Twins, and Industry 4.0, where I turn messy sensor streams and process data into models that support better manufacturing decisions. From AI-driven process optimization to knowledge graph reasoning and edge AI pipelines, I focus on building solutions that not only look good in notebooks but hold up in the real world. What excites me most is designing intelligent, scalable systems that make factories smarter, more efficient, and a little less mysterious.",
+
+    roles: [
+      "Data Analyst",
+      "AI Engineer",
+      "Technology Consultant",
+    ],
+
+    workingAreas: [
+      "Machine Learning",
+      "Deep Learning",
+      "Generative AI",
+      "NLP",
+      "Computer Vision",
+      "Data Analytics",
+      "Manufacturing AI",
+    ],
   },
+
   {
     id: 2,
-    title: "I'm very flexible with time zone communications",
+    title: "",  
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
-    titleClassName: "justify-start",
+    titleClassName: "",
     img: "",
     spareImg: "",
   },
+
   {
     id: 3,
-    title: "My tech stack",
-    description: "I constantly try to improve",
+    title: "",
+    description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
-    titleClassName: "justify-center",
-    img: "",
+    titleClassName: "",
+    img: "/grid.svg",
     spareImg: "",
   },
   {
     id: 4,
-    title: "Tech enthusiast with a passion for development.",
+    title: "",
     description: "",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-1",
+    className: "lg:col-span-2 md:col-span-3",
     imgClassName: "",
-    titleClassName: "justify-start",
+    titleClassName: "",
     img: "/grid.svg",
-    spareImg: "/b4.svg",
+    spareImg: "",
   },
 
   {
     id: 5,
-    title: "Currently building a JS Animation library",
-    description: "The Inside Scoop",
+    type: "tech-skills",
     className: "md:col-span-3 md:row-span-2",
-    imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
-    titleClassName: "justify-center md:justify-start lg:justify-center",
-    img: "/b5.svg",
-    spareImg: "/grid.svg",
   },
+
   {
     id: 6,
-    title: "Do you want to start a project together?",
+    title: "Download Resume",
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-1",
     imgClassName: "",
-    titleClassName: "justify-center md:max-w-full max-w-60 text-center",
+    titleClassName: "mb-1 text-3xl font-bold text-sky-400 text-center",
     img: "",
     spareImg: "",
   },
@@ -74,149 +108,129 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
-    title: "FigPro - Collaborative Design Tool",
-    des: "A collaborative design tool with real-time collaboration, vector editing, and a responsive UI.",
-    img: "/p1.svg",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
+    title: "AI-Driven Application for HPDC",
+    des: "Developed a small-data ML pipeline for squeeze-casting optimization, achieving high UTS and elongation prediction accuracy.",
+    img: "/p1.png",
+    iconLists: ["/icons/python.png", "/icons/pandas.png", "/icons/numpy.png", "/icons/seaborn.png", "/icons/sklearn.png"],
     link: "https://clone-figmaa.netlify.app",
     sourceCode: "https://github.com/sanidhyy/figma-clone",
   },
   {
     id: 2,
-    title: "Yoom - Video Conferencing App",
-    des: "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends.",
-    img: "/p2.svg",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
-    link: "https://clone-yoom.netlify.app",
-    sourceCode: "https://github.com/sanidhyy/zoom-clone",
+    title: "Knowledge Graph-based RAG Framework",
+    des: "A Knowledge Graph-based Retrieval-Augmented Generation Framework for Algorithm Selection in the Facility Layout Problem.",
+    img: "/p2.png",
+    iconLists: ["/icons/neo4j.png", "/icons/langchain.png", "/icons/python.png", "/icons/numpy.png", "/icons/gradio.png"],
+    link: "https://arxiv.org/abs/2509.18054",
+    sourceCode: "https://github.com/NikhilNS26/Knowledge-Graph-based-RAG-Framework",
   },
+
   {
     id: 3,
-    title: "AI Image SaaS - Canva Application",
-    des: "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
-    img: "/p3.svg",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
-    link: "https://ai-imaginify.netlify.app",
-    sourceCode: "https://github.com/sanidhyy/imaginify",
+    title: "Edge AI–based Precision Irrigation System",
+    des: "An edge AI solution for precision irrigation, optimizing water usage & crop yield through real-time data analysis using ML models.",
+    img: "/p3.png",
+    iconLists: ["/icons/python.png", "/icons/numpy.png", "/icons/pandas.png", "/icons/gradio.png", "/icons/pytorch.png", "/icons/pandas.png"],
+    link: "https://github.com/NikhilNS26/Smart-irrigation-system/blob/main/Technical-info-and-visualization/Edge_based_Smart_iirigation_system_report_blog.html",
+    sourceCode: "https://github.com/NikhilNS26/Smart-irrigation-system",
   },
   {
     id: 4,
-    title: "Animated Apple Iphone 3D Website",
-    des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
-    img: "/p4.svg",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
-    link: "https://app-iphone.netlify.app",
-    sourceCode: "https://github.com/sanidhyy/apple-clone",
+    title: "Data Analysis on Web Scraped Mobile Dataset",
+    des: "Performed Data Gathering, Cleaning,EDA, feature engineering, and modeling on a web-scraped mobile dataset from Smartpix website.",
+    img: "/p4.png",
+    iconLists: ["/icons/python.png", "/icons/pandas.png", "/icons/numpy.png", "/icons/sklearn.png", "/icons/seaborn.png"],
+    link: "https://github.com/NikhilNS26/Data-analysis-with-web-scrapped-data",
+    sourceCode: "https://github.com/NikhilNS26/Data-analysis-with-web-scrapped-data",
+  },
+  {
+    id: 5,
+    title: "Energy Consumption Analysis of Ender-3 3D Printer",
+    des: "A comprehensive analysis of energy consumption patterns in components of the Ender-3 3D printers using PZEM-017DC , proposing optimization strategies for efficiency.",
+    img: "/p5.png",
+    iconLists: ["/icons/python.png", "/icons/pandas.png", "/icons/numpy.png", "/icons/sklearn.png", "/icons/seaborn.png"],
+    link: "https://github.com/NikhilNS26/Makers-project/blob/main/MN_205_report%20%20.pdf",
+    sourceCode: "https://github.com/NikhilNS26/Makers-project/tree/main",
+  },
+
+  {
+    id: 6,
+    title: "Sentiment Analysis of Text using Generative & Discriminative Models",
+    des: "Implemented sentiment analysis on text data using both generative (Naive Bayes) and discriminative (Logistic Regression) models, comparing their performance.",
+    img: "/p6.png",
+    iconLists: ["/icons/python.png", "/icons/numpy.png", "/icons/pytorch.png", "/icons/sklearn.png", "/icons/seaborn.png"],
+    link: "https://github.com/NikhilNS26/Natural-Language-Processing/blob/main/NLP_assignment_naivebais_word2vac_BOW.ipynb",
+    sourceCode: "https://github.com/NikhilNS26/Natural-Language-Processing/blob/main/NLP_assignment_naivebais_word2vac_BOW.ipynb",
   },
 ] as const;
 
 export const testimonials = [
   {
-    quote: `Collaborating with ${links.ownerName} was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. ${links.ownerName}'s enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, ${links.ownerName} is the ideal partner.`,
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
-  },
-  {
-    quote: `Collaborating with ${links.ownerName} was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. ${links.ownerName}'s enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, ${links.ownerName} is the ideal partner.`,
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
-  },
-  {
-    quote: `Collaborating with ${links.ownerName} was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. ${links.ownerName}'s enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, ${links.ownerName} is the ideal partner.`,
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
-  },
-  {
-    quote: `Collaborating with ${links.ownerName} was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. ${links.ownerName}'s enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, ${links.ownerName} is the ideal partner.`,
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
-  },
-  {
-    quote: `Collaborating with ${links.ownerName} was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. ${links.ownerName}'s enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, ${links.ownerName} is the ideal partner.`,
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
-  },
-] as const;
-
-export const companies = [
-  {
     id: 1,
-    name: "cloudinary",
-    img: "/cloud.svg",
-    nameImg: "/cloudName.svg",
+    title: "Digital Twins",
+    img: "/c1.png",
+    iconLists: ["/icons/neo4j.png"],
+    link: "https://coursera.org/verify/N8S4OO7P6OUN",
   },
   {
     id: 2,
-    name: "appwrite",
-    img: "/app.svg",
-    nameImg: "/appName.svg",
+    title: "Knowledge optioneering for manufacturing processs",
+    img: "/c2.png",
+    iconLists: ["/icons/pymoo.jpg", "/icons/python.png", "/icons/neo4j.png", "/icons/langchain.png", "/icons/pytorch.png", "/icons/gradio.png"],
+    link: "https://drive.google.com/file/d/1QvhQ32yh0QcP0jYCBIFPrhJUH3ZdBKec/view?usp=sharing",
   },
   {
     id: 3,
-    name: "HOSTINGER",
-    img: "/host.svg",
-    nameImg: "/hostName.svg",
+    title: "Gate Score-Card AIR-13 2024 (808)",
+    img: "/c3.png",
+    iconLists: [""],
+    link: "https://drive.google.com/file/d/114T1gwHdihIOZ05LygNXdkI0tk4pFicK/view?usp=sharing",
   },
+
   {
     id: 4,
-    name: "stream",
-    img: "/s.svg",
-    nameImg: "/streamName.svg",
+    title: "IBM Data Science Professional Certificate",
+    img: "/c4.png",
+    iconLists: ["/icons/python.png", "/icons/pandas.png", "/icons/numpy.png", "/icons/seaborn.png", "/icons/sklearn.png", "/icons/mysql.png", "/icons/pytorch.png" ],
+    link: "https://www.coursera.org/account/accomplishments/specialization/certificate/ZIGYPY21IAQ3",
   },
-  {
-    id: 5,
-    name: "docker.",
-    img: "/dock.svg",
-    nameImg: "/dockerName.svg",
-  },
+
+
 ] as const;
 
 export const workExperience = [
   {
     id: 1,
-    title: "Frontend Engineer Intern",
-    desc: "Assisted in the development of a web-based platform using React.js, enhancing interactivity.",
+    title: "Research Intern TCS Research Bengaluru",
+    desc: "Developed a knowledge graph-based RAG framework for algorithm selection in facility layout problems, enhancing decision-making processes.",
     className: "md:col-span-2",
     thumbnail: "/exp1.svg",
   },
   {
     id: 2,
-    title: "Mobile App Dev - JSM Tech",
-    desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
+    title: "Student Intern NERFMTTI Assam",
+    desc: "Learned about various agricultural machinery and their testing procedures, contributing to research on improving farm equipment efficiency.",
     className: "md:col-span-2", // change to md:col-span-2
     thumbnail: "/exp2.svg",
-  },
-  {
-    id: 3,
-    title: "Freelance App Dev Project",
-    desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp3.svg",
-  },
-  {
-    id: 4,
-    title: "Lead Frontend Developer",
-    desc: "Developed and maintained user-facing features using modern frontend technologies.",
-    className: "md:col-span-2",
-    thumbnail: "/exp4.svg",
-  },
+  }
+  
 ] as const;
 
 export const socialMedia = [
   {
     name: "GitHub",
     img: "/git.svg",
-    link: "https://github.com/sanidhyy",
+    link: "https://github.com/NikhilNS26",
   },
   {
-    name: "Twitter",
-    img: "/twit.svg",
-    link: "https://twitter.com/TechnicalShubam",
+    name: "Instagram",
+    img: "/insta.svg",
+    link: "https://www.instagram.com/_.branded__soul._26/",
   },
   {
     name: "LinkedIn",
     img: "/link.svg",
-    link: "https://www.linkedin.com/in/sanidhyy",
+    link: "https://www.linkedin.com/in/nikhil-n-s-3683402b6/",
   },
 ] as const;
 
