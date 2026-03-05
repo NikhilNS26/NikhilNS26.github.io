@@ -17,7 +17,7 @@ export const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
       current += 1;
       setProgress(current);
       if (current >= 100) clearInterval(interval);
-    }, 35); // ~3.5s
+    }, 50); // ~3.5s
 
     return () => clearInterval(interval);
   }, []);
@@ -51,13 +51,15 @@ export const IntroLoader = ({ onComplete }: IntroLoaderProps) => {
     <div className="fixed inset-0 z-[9999] overflow-hidden">
 
       {/* 🎥 VIDEO BACKGROUND */}
+      {/* 🎥 VIDEO BACKGROUND */}
       <video
         className="absolute inset-0 h-full w-full object-cover opacity-100"
-        src="\intro.mp4"   // ⬅️ CHANGE THIS PATH LATER
+        src="/intro.mp4"
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
       />
 
 
