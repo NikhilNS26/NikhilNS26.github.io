@@ -54,18 +54,20 @@ const MainPage = () => {
       {showIntro && <IntroLoader onComplete={handleIntroComplete} />}
 
       {/* MAIN WEBSITE CONTENT */}
-      <main className="relative mx-auto flex flex-col items-center justify-center overflow-clip bg-black-100 px-5 sm:px-10">
-        <FloatingNav navItems={navItems} />
+      {!showIntro && (
+        <main className="relative mx-auto flex flex-col items-center justify-center overflow-clip bg-black-100 px-5 sm:px-10">
+          <FloatingNav navItems={navItems} />
 
-        <div className="w-full max-w-7xl">
-          <Hero />
-          <Grid />
-          <RecentProjects />
-          <Clients />
-          <Experience />
-          <Footer />
-        </div>
-      </main>
+          <div className="w-full max-w-7xl">
+            <Hero />
+            <Grid />
+            <RecentProjects />
+            <Clients />
+            <Experience />
+            <Footer />
+          </div>
+        </main>
+      )}
     </>
   );
 };
