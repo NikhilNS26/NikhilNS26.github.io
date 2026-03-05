@@ -1,49 +1,27 @@
 import { links } from "@/config";
-import {
-  FaInstagram,} from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 
 export const navItems = [
-  {
-    name: "About",
-    link: "#about",
-  },
-  {
-    name: "Projects",
-    link: "#projects",
-  },
-  {
-    name: "Certifications",
-    link: "#certifications",
-  },
-
-  {
-    name: "Experience",
-    link: "#experience",
-  },
-  {
-    name: "Contact",
-    link: "#contact",
-  },
+  { name: "About", link: "#about" },
+  { name: "Projects", link: "#projects" },
+  { name: "Certifications", link: "#certifications" },
+  { name: "Experience", link: "#experience" },
+  { name: "Contact", link: "#contact" },
 ];
 
 export const gridItems = [
   {
     id: 1,
-    type: "about-me", 
+    type: "about-me",
     className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
-
-    profileImage: "/techy.png", // change path later
-
+    profileImage: "/techy.png",
     aboutText:
-    // 2 side alligment of paragraph 
       "I enjoy making machines, data, and algorithms communicate with each other, often more effectively than humans do. My work sits at the intersection of Machine Learning, Generative AI, Digital Twins, and Industry 4.0, where I turn messy sensor streams and process data into models that support better manufacturing decisions. From AI-driven process optimization to knowledge graph reasoning and edge AI pipelines, I focus on building solutions that not only look good in notebooks but hold up in the real world. What excites me most is designing intelligent, scalable systems that make factories smarter, more efficient, and a little less mysterious.",
-
     roles: [
       "Data Analyst",
       "AI Engineer",
       "Technology Consultant",
     ],
-
     workingAreas: [
       "Machine Learning",
       "Deep Learning",
@@ -54,10 +32,9 @@ export const gridItems = [
       "Manufacturing AI",
     ],
   },
-
   {
     id: 2,
-    title: "",  
+    title: "",
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
@@ -65,7 +42,6 @@ export const gridItems = [
     img: "",
     spareImg: "",
   },
-
   {
     id: 3,
     title: "",
@@ -86,13 +62,11 @@ export const gridItems = [
     img: "/grid.svg",
     spareImg: "",
   },
-
   {
     id: 5,
     type: "tech-skills",
     className: "md:col-span-3 md:row-span-2",
   },
-
   {
     id: 6,
     title: "Download Resume",
@@ -103,7 +77,7 @@ export const gridItems = [
     img: "",
     spareImg: "",
   },
-] as const;
+];
 
 export const projects = [
   {
@@ -124,7 +98,6 @@ export const projects = [
     link: "https://arxiv.org/abs/2509.18054",
     sourceCode: "https://github.com/NikhilNS26/Knowledge-Graph-based-RAG-Framework",
   },
-
   {
     id: 3,
     title: "Edge AI–based Precision Irrigation System",
@@ -152,17 +125,16 @@ export const projects = [
     link: "https://github.com/NikhilNS26/Makers-project/blob/main/MN_205_report%20%20.pdf",
     sourceCode: "https://github.com/NikhilNS26/Makers-project/tree/main",
   },
-
   {
     id: 6,
     title: "Sentiment Analysis of Text using Generative & Discriminative Models",
-    des: "Implemented sentiment analysis on text data using both generative (Naive Bayes) and discriminative (Logistic Regression) models, comparing their performance.",
+    des: "Implemented sentiment analysis on text data using both generative (Naive Bayes) and discriminative (Logistic Regression) models.",
     img: "/p6.png",
     iconLists: ["/icons/python.png", "/icons/numpy.png", "/icons/pytorch.png", "/icons/sklearn.png", "/icons/seaborn.png"],
     link: "https://github.com/NikhilNS26/Natural-Language-Processing/blob/main/NLP_assignment_naivebais_word2vac_BOW.ipynb",
     sourceCode: "https://github.com/NikhilNS26/Natural-Language-Processing/blob/main/NLP_assignment_naivebais_word2vac_BOW.ipynb",
   },
-] as const;
+];
 
 export type Certificate = {
   id: number;
@@ -184,14 +156,7 @@ export const testimonials: Certificate[] = [
     id: 2,
     title: "Knowledge optioneering for manufacturing processs",
     img: "/c2.png",
-    iconLists: [
-      "/icons/pymoo.jpg",
-      "/icons/python.png",
-      "/icons/neo4j.png",
-      "/icons/langchain.png",
-      "/icons/pytorch.png",
-      "/icons/gradio.png",
-    ],
+    iconLists: ["/icons/pymoo.jpg","/icons/python.png","/icons/neo4j.png","/icons/langchain.png","/icons/pytorch.png","/icons/gradio.png"],
     link: "https://drive.google.com/file/d/1QvhQ32yh0QcP0jYCBIFPrhJUH3ZdBKec/view?usp=sharing",
   },
   {
@@ -205,56 +170,35 @@ export const testimonials: Certificate[] = [
     id: 4,
     title: "IBM Data Science Professional Certificate",
     img: "/c4.png",
-    iconLists: [
-      "/icons/python.png",
-      "/icons/pandas.png",
-      "/icons/numpy.png",
-      "/icons/seaborn.png",
-      "/icons/sklearn.png",
-      "/icons/mysql.png",
-      "/icons/pytorch.png",
-    ],
+    iconLists: ["/icons/python.png","/icons/pandas.png","/icons/numpy.png","/icons/seaborn.png","/icons/sklearn.png","/icons/mysql.png","/icons/pytorch.png"],
     link: "https://www.coursera.org/account/accomplishments/specialization/certificate/ZIGYPY21IAQ3",
   },
-] as const;
+];
 
 export const workExperience = [
   {
     id: 1,
     title: "Research Intern TCS Research Bengaluru",
-    desc: "Developed a knowledge graph-based RAG framework for algorithm selection in facility layout problems, enhancing decision-making processes.",
+    desc: "Developed a knowledge graph-based RAG framework for algorithm selection in facility layout problems.",
     className: "md:col-span-2",
     thumbnail: "/exp1.svg",
   },
   {
     id: 2,
     title: "Student Intern NERFMTTI Assam",
-    desc: "Learned about various agricultural machinery and their testing procedures, contributing to research on improving farm equipment efficiency.",
-    className: "md:col-span-2", // change to md:col-span-2
+    desc: "Learned about agricultural machinery and testing procedures.",
+    className: "md:col-span-2",
     thumbnail: "/exp2.svg",
-  }
-  
-] as const;
+  },
+];
 
 export const socialMedia = [
-  {
-    name: "GitHub",
-    img: "/git.svg",
-    link: "https://github.com/NikhilNS26",
-  },
-  {
-    name: "Instagram",
-    img: "/insta.svg",
-    link: "https://www.instagram.com/_.branded__soul._26/",
-  },
-  {
-    name: "LinkedIn",
-    img: "/link.svg",
-    link: "https://www.linkedin.com/in/nikhil-n-s-3683402b6/",
-  },
-] as const;
+  { name: "GitHub", img: "/git.svg", link: "https://github.com/NikhilNS26" },
+  { name: "Instagram", img: "/insta.svg", link: "https://www.instagram.com/_.branded__soul._26/" },
+  { name: "LinkedIn", img: "/link.svg", link: "https://www.linkedin.com/in/nikhil-n-s-3683402b6/" },
+];
 
 export const techStack = {
   stack1: ["React.js", "Next.js", "Typescript"],
   stack2: ["Vue.js", "AWS", "MongoDB"],
-} as const;
+};
