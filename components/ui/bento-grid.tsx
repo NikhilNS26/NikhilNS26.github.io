@@ -450,72 +450,16 @@ export const BentoGridItem = ({
           {/* CREATIVE COMPANION (ID = 3) */}
           {id === 3 && (
             <div className="absolute inset-0 p-1 lg:p-2">
-              {/* Heading */}
-              {/* shift the text bit from left to right beacuse the text we attachch with left border of the continer grid*/}
-              <h3 className="mb-5 text-xl font-bold text-sky-400 border-l-4 pl-3 ">
-                My Creative Companion
-              </h3>
-
-              {/* CONTENT ROW */}
-              <div className="flex items-start gap-6">
-
-                {/* LEFT: PHOTO */}
-                <div className="flex-shrink-0">
-                  <img
-                    src="" // replace later
-                    alt="Creative Companion"
-                    className="
-                      h-28 w-28
-                      rounded-xl
-                      object-cover
-                      border border-white/10
-                    "
-                  />
-                </div>
-
-                {/* RIGHT: INFO */}
-                <div className="flex flex-col gap-1">
-
-                  {/* Name (WHITE, no gradient) */}
-                  <h4 className="text-lg font-semibold text-red-400">
-                    Surya Tomar
-                  </h4>
-
-                  {/* Role */}
-                  <span
-                    className="
-                      w-fit rounded-full px-3 py-1
-                      bg-green-500/10
-                      text-sm
-                      text-green-400
-                      border border-green-500/30
-                    "
-                  >
-                    AI | ML Researcher
-                  </span>
-
-                  {/* Description */}
-                  <p className="max-w-sm text-sm leading-relaxed text-white/70">
-                    Focused on resarch in Generative AI, Digital Twins, and Intelligent Systems for Smart Manufacturing applications.
-                  </p>
-
-                  {/* Connect */}
-                  <a
-                    href="mailto:suryatomar@iisc.ac.in" // change later
-                    className="
-                      inline-flex items-center gap-1
-                      text-sm font-medium text-sky-400
-                      transition-all duration-200
-                      hover:gap-2 hover:underline
-                    "
-                  >
-                    <span className="text-sm text-pink-400">
-                    Connect
-                    </span>
-                    <span className="text-pink-400">→</span>
-                  </a>
-                </div>
-              </div>
+              <img
+                src="/timeline_flow.png"   // <-- put your image here
+                alt="Grid Image"
+                className="
+                  h-full w-full
+                  rounded-xl
+                  object-cover
+                  border border-white/10
+                "
+              />
             </div>
           )}
 
