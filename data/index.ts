@@ -86,8 +86,8 @@ export const projects = [
     des: "Developed a small-data ML pipeline for squeeze-casting optimization, achieving high UTS and elongation prediction accuracy.",
     img: "/p1.png",
     iconLists: ["/icons/python.png", "/icons/pandas.png", "/icons/numpy.png", "/icons/seaborn.png", "/icons/sklearn.png"],
-    link: "https://clone-figmaa.netlify.app",
-    sourceCode: "https://github.com/sanidhyy/figma-clone",
+    link: "https://github.com/NikhilNS26/AI-Driven-Application-for-HPDC",
+    sourceCode: "https://github.com/NikhilNS26/AI-Driven-Application-for-HPDC",
   },
   {
     id: 2,
